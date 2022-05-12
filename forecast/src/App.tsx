@@ -1,8 +1,9 @@
 import React from "react";
-import "./App.css";
+import Main from "./componets/Main";
+import "./style/globalStyle.css";
 
 function App() {
-  return <div>dd</div>;
+  return <Main />;
 }
 
 export default App;
