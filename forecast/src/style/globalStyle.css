@@ -1,0 +1,33 @@
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+input,
+p,
+span,
+textarea,
+select {
+  font-family: "Noto Sans KR", sans-serif;
+  color: #000000;
+}
+
+body,
+html {
+  background-color: #e6eaed;
+  overflow: hidden;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
