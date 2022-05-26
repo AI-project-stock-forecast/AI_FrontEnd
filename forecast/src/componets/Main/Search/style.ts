@@ -64,7 +64,8 @@ export const RiseBox = styled.div<{
 }>`
   width: 15px;
   height: 15px;
-  background: #ff4343;
+  background: ${({ increase }) => (increase ? "#FF4343" : "#7D81DD")};
+
   margin: 19px 22px 0px 0px;
 `;
 
@@ -81,7 +82,7 @@ export const PredictionRate = styled.p<{
   font-weight: 500;
   font-size: 18px;
   margin: 10px 81px 0px 70px;
-  color: ${(increase) => (increase ? "#FF4343" : "#7D81DD")};
+  color: ${({ increase }) => (increase ? "#FF4343" : "#7D81DD")};
 `;
 
 export const Number = styled(Text)`
