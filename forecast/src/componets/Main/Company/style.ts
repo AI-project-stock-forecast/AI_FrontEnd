@@ -9,7 +9,11 @@ export const Container = styled.div`
 
 export const InfoContent = styled.div`
   display: flex;
-  margin-bottom: 15px;
+  margin-bottom: 5px;
+  :nth-of-type(1) {
+    align-items: flex-end;
+    margin-bottom: 15px;
+  }
   span {
     :nth-of-type(2) {
       margin-bottom: 10px;
@@ -31,11 +35,11 @@ export const Font = styled.span`
 export const Text = styled(Font)`
   font-size: 17px;
   color: #989898;
-  margin: 20px 0px 0px 10px;
+  margin-left: 5px;
 `;
 
 export const Standard = styled.p`
-  font-size: 17px;
+  font-size: 14px;
   color: #989898;
   margin-bottom: 20px;
 `;

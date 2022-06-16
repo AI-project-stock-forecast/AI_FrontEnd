@@ -19,10 +19,10 @@ const Search = () => {
           {new Array(12).fill(0).map((_, index) => (
             <S.CompanyBox key={index}>
               <S.RiseBox increase={true} />
-              <div>
+              <S.BaseCompanyInfor>
                 <S.Company>삼성 전자</S.Company>
                 <S.Text>현재가 280.000원</S.Text>
-              </div>
+              </S.BaseCompanyInfor>
               <S.PredictionRate increase={true}>+30%</S.PredictionRate>
               <S.Number>+430.000</S.Number>
             </S.CompanyBox>

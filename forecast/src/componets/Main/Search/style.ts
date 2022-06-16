@@ -4,10 +4,10 @@ export const Container = styled.div`
   width: 33%;
   background: #ffffff;
   border-radius: 20px;
-  padding-top: 24px;
   .img {
     color: #7d81dd;
     margin-top: 3px;
+    transform: scale(1.5) translateY(0px);
   }
 `;
 
@@ -16,22 +16,27 @@ export const Search = styled.div`
   justify-content: space-between;
   margin: 0 auto;
   width: 85%;
-  height: 30px;
+  padding: 18px 0;
 `;
 
 export const SearchInput = styled.input`
   width: 86%;
+  font-size: 15px;
   border: none;
   outline: none;
+  color: black;
+  ::placeholder {
+    color: rgb(150, 150, 150);
+  }
 `;
 
 export const TextBox = styled.div`
   height: 40px;
   background: #efefef;
   display: flex;
-  margin-top: 22px;
+  align-items: center;
+  padding: 0 60px;
   justify-content: space-between;
-  padding: 7px 90px 0px 60px;
 `;
 
 export const Text = styled.p`
@@ -52,11 +57,16 @@ export const CompanyBox = styled.div`
   height: 72px;
   border-bottom: 1px solid #e3e3e3;
   display: flex;
+  align-items: center;
   padding: 10px 21px;
   cursor: pointer;
   &:hover {
     background-color: #e5e5e5;
   }
+`;
+
+export const BaseCompanyInfor = styled.div`
+  width: 195px;
 `;
 
 export const RiseBox = styled.div<{
@@ -65,26 +75,23 @@ export const RiseBox = styled.div<{
   width: 15px;
   height: 15px;
   background: ${({ increase }) => (increase ? "#FF4343" : "#7D81DD")};
-
-  margin: 19px 22px 0px 0px;
+  margin-right: 22px;
 `;
 
 export const Company = styled.span`
   font-family: "Noto Sans KR";
   font-weight: 700;
-  font-size: 20px;
+  font-size: 18px;
   color: #000000;
 `;
 
 export const PredictionRate = styled.p<{
   increase: boolean;
 }>`
-  font-weight: 500;
-  font-size: 18px;
-  margin: 10px 81px 0px 70px;
+  width: 205px;
+  font-weight: 600;
+  font-size: 16px;
   color: ${({ increase }) => (increase ? "#FF4343" : "#7D81DD")};
 `;
 
-export const Number = styled(Text)`
-  margin: 10px 35px;
-`;
+export const Number = styled(Text)``;
