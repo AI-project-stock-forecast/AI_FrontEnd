@@ -10,8 +10,10 @@ export const Container = styled.div`
 export const InfoContent = styled.div`
   display: flex;
   margin-bottom: 15px;
-  :nth-child(2) {
-    margin-bottom: 10px;
+  span {
+    :nth-of-type(2) {
+      margin-bottom: 10px;
+    }
   }
 `;
 
@@ -46,6 +48,5 @@ export const Number = styled(Font)<{
 `;
 
 export const GraphBox = styled.div`
-  border: 1px solid blue;
   height: 80%;
 `;
