@@ -1,8 +1,38 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import * as S from "./style";
 import { BiSearchAlt2 } from "react-icons/bi";
+import axios from "axios";
+import { SERVER_URL } from "../../../constants/server";
 
-const Search = () => {
+type Props = {
+  setSelectCompanyCode(code: string): void;
+  selectCompanyCode: string;
+  setCompanyInfor(company: any): void;
+};
+
+const Search = ({
+  selectCompanyCode,
+  setSelectCompanyCode,
+  setCompanyInfor,
+}: Props) => {
+  const [companys, setCompanys] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(`${SERVER_URL}/stock`)
+      .then((res) => {
+        setCompanys(res.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+  useEffect(() => {
+    if (companys.length !== 0) {
+      setSelectCompanyCode(companys[0][0]);
+      setCompanyInfor(companys[0]);
+    }
+  }, [companys, setSelectCompanyCode, setCompanyInfor]);
+
   return (
     <>
       <S.Container>
@@ -16,15 +46,26 @@ const Search = () => {
           <S.Text>거래량</S.Text>
         </S.TextBox>
         <S.CompanyContainer>
-          {new Array(12).fill(0).map((_, index) => (
-            <S.CompanyBox key={index}>
+          {companys.map((_, index) => (
+            <S.CompanyBox
+              key={index}
+              style={
+                selectCompanyCode === _[0]
+                  ? { borderLeft: "3px solid #ff2566" }
+                  : {}
+              }
+              onClick={() => {
+                setSelectCompanyCode(_[0]);
+                setCompanyInfor(_);
+              }}
+            >
               <S.RiseBox increase={true} />
               <S.BaseCompanyInfor>
-                <S.Company>삼성 전자</S.Company>
-                <S.Text>현재가 280.000원</S.Text>
+                <S.Company>{_[1]}</S.Company>
+                <S.Text>현재가 {_[2]}원</S.Text>
               </S.BaseCompanyInfor>
-              <S.PredictionRate increase={true}>+30%</S.PredictionRate>
-              <S.Number>+430.000</S.Number>
+              <S.PredictionRate increase={true}>{_[3]}%</S.PredictionRate>
+              <S.Number>+{_[4]}</S.Number>
             </S.CompanyBox>
           ))}
         </S.CompanyContainer>
