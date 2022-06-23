@@ -31,18 +31,20 @@ type Props = {
 
 const Company = ({ companyCode, companyInfor }: Props) => {
   const [graphData, setGraphData] = useState<any>(null);
-  const labels = ["1주일 전", "현재", "1주일 후"];
   const dataNum = 7;
 
   useEffect(() => {
     companyCode &&
-      axios.get(`${SERVER_URL}/stockprice/${companyCode}`).then((res) => {
+      axios.get(`${SERVER_URL}/stock/price/${companyCode}`).then((res) => {
         const data = res.data as any[];
         setGraphData({
           labels: data
             .slice(0, dataNum + 1)
             .reverse()
-            .map((_) => _[0]),
+            .map(
+              (_) =>
+                _[0].slice(0, _[0].length - 2) + (parseInt(_[0].substr(-2)) + 3)
+            ),
           datasets: [
             {
               label: "data1",
@@ -57,18 +59,6 @@ const Company = ({ companyCode, companyInfor }: Props) => {
         });
       });
   }, [companyCode]);
-
-  const graph_data = {
-    labels,
-    datasets: [
-      {
-        label: "data1",
-        data: [1, 2, 3, 4, 5],
-        borderColor: "rgb(255, 99, 132)",
-        backgroundColor: "rgba(255, 99, 132, 0.5)",
-      },
-    ],
-  };
 
   const options = {
     responsive: true,

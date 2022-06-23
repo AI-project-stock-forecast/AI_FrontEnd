@@ -16,6 +16,7 @@ const Search = ({
   setCompanyInfor,
 }: Props) => {
   const [companys, setCompanys] = useState([]);
+  const [searchKeywork, setSearchKeyword] = useState("");
 
   useEffect(() => {
     axios
@@ -33,11 +34,18 @@ const Search = ({
     }
   }, [companys, setSelectCompanyCode, setCompanyInfor]);
 
+  const searchCompany = (event: any) => {
+    setSearchKeyword(event.target.value);
+  };
+
   return (
     <>
       <S.Container>
         <S.Search>
-          <S.SearchInput placeholder="회사명을 입력하세요." />
+          <S.SearchInput
+            placeholder="회사명을 입력하세요."
+            onChange={searchCompany}
+          />
           <BiSearchAlt2 className="img" />
         </S.Search>
         <S.TextBox>
@@ -46,28 +54,30 @@ const Search = ({
           <S.Text>거래량</S.Text>
         </S.TextBox>
         <S.CompanyContainer>
-          {companys.map((_, index) => (
-            <S.CompanyBox
-              key={index}
-              style={
-                selectCompanyCode === _[0]
-                  ? { borderLeft: "3px solid #ff2566" }
-                  : {}
-              }
-              onClick={() => {
-                setSelectCompanyCode(_[0]);
-                setCompanyInfor(_);
-              }}
-            >
-              <S.RiseBox increase={true} />
-              <S.BaseCompanyInfor>
-                <S.Company>{_[1]}</S.Company>
-                <S.Text>현재가 {_[2]}원</S.Text>
-              </S.BaseCompanyInfor>
-              <S.PredictionRate increase={true}>{_[3]}%</S.PredictionRate>
-              <S.Number>+{_[4]}</S.Number>
-            </S.CompanyBox>
-          ))}
+          {companys
+            .filter((_: any[]) => _[1].indexOf(searchKeywork) === 0)
+            .map((_, index) => (
+              <S.CompanyBox
+                key={index}
+                style={
+                  selectCompanyCode === _[0]
+                    ? { borderLeft: "3px solid #ff2566" }
+                    : {}
+                }
+                onClick={() => {
+                  setSelectCompanyCode(_[0]);
+                  setCompanyInfor(_);
+                }}
+              >
+                <S.RiseBox increase={true} />
+                <S.BaseCompanyInfor>
+                  <S.Company>{_[1]}</S.Company>
+                  <S.Text>현재가 {_[2]}원</S.Text>
+                </S.BaseCompanyInfor>
+                <S.PredictionRate increase={true}>{_[3]}%</S.PredictionRate>
+                <S.Number>+{_[4]}</S.Number>
+              </S.CompanyBox>
+            ))}
         </S.CompanyContainer>
       </S.Container>
     </>
