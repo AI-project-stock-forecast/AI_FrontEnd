@@ -55,7 +55,7 @@ const Search = ({
         </S.TextBox>
         <S.CompanyContainer>
           {companys
-            .filter((_: any[]) => _[1].indexOf(searchKeywork) === 0)
+            .filter((_: any[]) => _[1].toLowerCase().includes(searchKeywork))
             .map((_, index) => (
               <S.CompanyBox
                 key={index}
